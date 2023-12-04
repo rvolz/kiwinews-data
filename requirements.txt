@@ -1,0 +1,11 @@
+click
+dune-client
+jsonlines
+matplotlib
+matplotlib_inline
+numpy
+pandas
+python-dotenv
+requests
+seaborn
+jupyter_client
