@@ -8,15 +8,14 @@ load_dotenv()
 
 
 DUNE_TABLES = {
-    'tip_receivers': { 'name': 'kiwi_news_tiprecs', 'description': 'Kiwi news tip receivers'},
-    'tip_senders': { 'name': 'kiwi_news_tippers', 'description': 'Kiwi news tip senders'},
+    'tips': { 'name': 'kiwi_news_tips', 'description': 'Kiwi news tip data'},
     'activities': { 'name': 'kiwi_news_activities', 'description': 'Kiwi news user activities per month'},
     'stories': { 'name': 'kiwi_news_stories', 'description': 'Kiwi news top stories per month'},
 }
 
 @click.command()
 @click.option("--file_name", required=True, help="CSV file")
-@click.option("--kind", required=True, help="tip_sender|tip_receiver|activities")
+@click.option("--kind", required=True, help="activities|stories|tips")
 def upload_file(file_name, kind):
     with open(file_name) as f:
         csv_data = f.read()

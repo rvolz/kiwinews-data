@@ -8,18 +8,15 @@ import click
 def user_tips():
     with open('./data/tips.json') as f:
            tips = json.load(f)
-    with open('./data/kiwi_news_tip_receivers.csv', 'w', newline='\n') as csvfile:
+    with open('./data/kiwi_news_tips.csv', 'w', newline='\n') as csvfile:
         writer = csv.writer(csvfile, delimiter=",")
-        writer.writerow(["user", "amount", "count"])
+        writer.writerow(["user", "role", "amount", "count"])
         recs = tips['data']['receivers']
         for rec in recs.keys():
-            writer.writerow([rec, recs[rec]['totalValue'], recs[rec]['count']])
-    with open('./data/kiwi_news_tip_senders.csv', 'w', newline='\n') as csvfile:
-        writer = csv.writer(csvfile, delimiter=",")
-        writer.writerow(["user", "amount", "count"])
+            writer.writerow([rec, 1, recs[rec]['totalValue'], recs[rec]['count']])
         recs = tips['data']['tippers']
         for rec in recs.keys():
-            writer.writerow([rec, recs[rec]['totalValue'], recs[rec]['count']])
+            writer.writerow([rec, 2, recs[rec]['totalValue'], recs[rec]['count']])
 
 if __name__ == '__main__':
     user_tips()
