@@ -9,13 +9,16 @@ from dotenv import load_dotenv
 load_dotenv()
 
 @click.command()
-@click.option("--kind", required=True, help="tip_sender|tip_receiver|activities")
+@click.option("--kind", required=True, help="tips")
 def refresh(kind):
-    query = QueryBase(
-        name="Kiwi News top stories per month",
-        query_id=3246050,
-        params=[],
-    )
+    if kind == 'tips':
+        query = QueryBase(
+            name="Kiwi News Tips Total",
+            query_id=3259924,
+            params=[],
+        )
+    else:
+        click.echo(f'invalid parameter {kind}', err=True)
     dune = DuneClient.from_env()
     results = dune.run_query(query)
 

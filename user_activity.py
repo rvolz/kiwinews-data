@@ -9,7 +9,7 @@ import click
 def user_activity(limit):
     date_limit = date.fromisoformat(limit)
     click.echo(f"Getting user activity <= {date_limit}")
-    with open('./data/kiwiw_news_activity.csv', 'w', newline='\n') as csvfile:
+    with open('./data/kiwi_news_activity.csv', 'w', newline='\n') as csvfile:
         writer = csv.writer(csvfile, delimiter=",")
         writer.writerow(["date","user"])
         for p in sorted(Path("./data").glob("*.jsonl")):
