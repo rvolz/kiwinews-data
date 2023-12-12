@@ -19,7 +19,6 @@ DUNE_TABLES = {
 def upload_file(file_name, kind):
     with open(file_name) as f:
         csv_data = f.read()
-    print(csv_data)
     dune = DuneClient.from_env()
     table_data = DUNE_TABLES[kind]
     res = dune.upload_csv(table_name = table_data['name'], data = csv_data, description = table_data['description'])
