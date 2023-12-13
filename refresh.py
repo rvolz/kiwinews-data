@@ -13,8 +13,8 @@ load_dotenv()
 def refresh(kind):
     if kind == 'tips':
         query = QueryBase(
-            name="Kiwi News Tips Total",
-            query_id=3259924,
+            name="Kiwi News Tips",
+            query_id=3281829,
             params=[],
         )
     else:
