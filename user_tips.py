@@ -1,5 +1,6 @@
 from pathlib import Path
 from datetime import date
+from shutil import copyfile
 import json
 import csv
 import click
@@ -27,9 +28,11 @@ def user_tips():
             tip_ctr += count
             writer.writerow([rec, 'tipper', amount, count])
     if round(rec_amount,2) != round(tip_amount,2) or rec_ctr != tip_ctr:
-        click.echo(f"sums don't add up: amounts ({rec_amount}/{tip_amount}), counters ({rec_ctr}/{tip_ctr})", err=True)        
-        exit(1) 
+        click.echo(f"sums don't add up: amounts ({rec_amount}/{tip_amount}), counters ({rec_ctr}/{tip_ctr})", err=True)
+        exit(1)
     else:
+        dtf = f'./data/kiwi_news_tips_{date.isoformat(date.today())}.csv'
+        copyfile('./data/kiwi_news_tips.csv', dtf)
         exit(0)
 
 
