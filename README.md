@@ -15,7 +15,7 @@ pip install -r requirements.txt
 
 ## Usage
 
-Download message data from a Kiwiw News instance for analysis:
+Download message data from a Kiwi News instance for analysis:
 
 ```sh
 python dl_messages.py
