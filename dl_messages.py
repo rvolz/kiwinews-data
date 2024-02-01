@@ -14,24 +14,32 @@ if not data_dir.exists():
 
 @click.command()
 @click.option("--start", default=0, help="Start index for message downloads. Set to 0 to get all.")
-def download_messages(start):
+@click.option("--comments", default=False, help="Set to get the comments instead of the stories/votes")
+def download_messages(start, comments):
     # Get the Kiwi News API URL for messages
     url = os.getenv("KIWI_MESSAGES_API")
     # Page length
     rows = 100
 
     index = start
+    if comments:
+        fname = "comments"
+    else:
+        fname = "messages"
     while True:
-        click.echo(f"requesting {rows} messages, starting at {index}", color=True)
-        response = requests.post(url=url,json={"from": index, "amount": rows })
+        if comments:
+            click.echo(f"requesting {rows} comments, starting at {index}", color=True)
+            response = requests.post(url=url,json={"from": index, "amount": rows , "type": "comment"})
+        else:
+            click.echo(f"requesting {rows} stories/votes, starting at {index}", color=True)
+            response = requests.post(url=url,json={"from": index, "amount": rows })        
         if response.status_code == 200:
             r = response.json()
             if len(r["data"]) == 0:
                 break
-            with jsonlines.open(f'./data/messages-{index:04d}.jsonl', mode='w') as writer:
+            with jsonlines.open(f'./data/{fname}-{index:04d}.jsonl', mode='w') as writer:
                 writer.write_all(r["data"])
             index += rows
-            click.echo("messages downloaded", color = True)
         else:
             click.echo(response, err=True, color=True)
             break
