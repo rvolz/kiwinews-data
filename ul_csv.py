@@ -9,7 +9,7 @@ load_dotenv()
 
 DUNE_TABLES = {
     'tips': { 'name': 'kiwi_news_tips', 'description': 'Kiwi news tip data'},
-    'activities': { 'name': 'kiwi_news_activities', 'description': 'Kiwi news user activities per month'},
+    'activities': { 'name': 'kiwi_news_activity', 'description': 'Kiwi news user activities per month'},
     'stories': { 'name': 'kiwi_news_stories', 'description': 'Kiwi news top stories per month'},
 }
 
